@@ -1,78 +1,53 @@
-## Boas práticas no Front:
+# Testes de aceitação
+Os testes são executados utilizando Cucumber e Puppeteer e escritos 
+utilizando TypeScript. O foco é testar o comportamento do sistema, dessa forma,
+não fazemos nenhuma integração externa.
+
+## Depêndencias
+As dependências são responsáveis para que os testes de aceitação rodem tanto local,
+quanto no pipeline. São softwares, bibliotecas, ferramentas ou servidores que irão
+auxiliar na orquestração dos testes e na sua execução.
+
+|  Nome  |  Link  |
+| ------ | ------ |
+| NPM | https://www.npmjs.com/ |
+| TypeScript for Node | https://github.com/TypeStrong/ts-node |
+| YAML for JavaScript | https://github.com/nodeca/js-yaml |
+| TypeScript | https://www.typescriptlang.org/ |
+| Cucumber | https://github.com/cucumber/cucumber-js |
+| Puppeteer | https://github.com/GoogleChrome/puppeteer |
 
 
+## Estrutura/Arquitetura
+### features
+Responsável por todos os cenários levantados até então e escritos em Gherkin.
+Estão agrupados pelas funcionalidades que o sistema possui hoje.
 
-Microcommits, mas **- antes fazer um push -,** lembre-se de:
+### pages
+Responsável por ter as informações dos elementos das páginas que o sistema possui. Lá é 
+onde encontramos praticamente todos os identificadores de elementos e onde executamos as
+ações de mais baixo nível da automação.
 
+### steps
+Responsável por ter a execução dos passos dos cenários em Gherkin. É onde possui a amarração
+das features com o código que será executado por trás. Possui a execução das ações de automação 
+em alto nível.
 
-**1** - Rodar os testes unitários:
-
-> npm run test:unit
-
-
-**2** - Rodar os testes de aceitação:
-
-> **Pelo docker compose:**
->
-> docker-compose up --build --exit-code-from=run_at
-> 
-> **Na mão =):**
->
-> npm run build:at
->
-> node .\stubs\
->
-> npm run serve:stub
->
-> npm run test:at
+### utils
+Responsável por ter alguns elementos úteis para a execução dos testes.
 
 
-**3** - Rodar a SPA, verificando se algum erro de LINT impedirá a subida
-	
-> **Para rodar a aplicação preparada para o servidor de stubs:**
->
-> npm run serve:stub
->
-> **Para rodar a aplicação:**
->
-> npm run serve
+### Local
+As configurações que são feitas para a execução dos cenários de teste começam pelo `node.d.ts`, que
+criam variáveis globais que serão utilizadas durante todo o processo. No `global.ts` é onde acontece
+a criação e estruturação do navegador e dos hooks.
+Na pasta raiz do projeto, o arquivo `cucumber.js` que será responsável por executar o Cucumber
+com seus parâmetros. 
+Também na pasta raiz do projeto você encontra o `package.json`, onde é possível verificar o que cada
+script da linha de comando irá executar.
 
-_____________
+É necessário executar este comando:
 
-Se tudo correu bem: git push. Depois disso, lembre-se de:
-
-
-**1** - Acompanhar o build no pipeline
-
->  http://bit.ly/pipeFront
-
-
-**2** - Fazer um teste exploratório no ambiente publicado com o inspecionador aberto, para verificar possíveis erros de console/network
-
-> **Homologação:**
->
-> https://cloud-hml.animaeducacao.com.br/rematricula/login
->
-> **DEV:**
->
-> https://cloud-dev.animaeducacao.com.br/rematricula/login
-
-
-## Atualização e publicação da imagem base para acceptance tests
-
-**1** - Instalar o azure-cli. Referência: https://chocolatey.org/packages/azure-cli
-
-**2** - Realizar o login no registry
-> az acr login -n azure.anima.io -u <usuario> -p <password>
-
-
-**2** - Executar os comandos abaixo para buil e push da imagem
-> docker build -t servico-rematricula-frontend-at:{versao} -f build/acceptance-tests/Dockerfile .
-> 
-> npm run build:at
->
-> node .\stubs\
->
-> npm run serve:stub
->
-> npm run test:at
+```sh
+$ npm run test
+```
