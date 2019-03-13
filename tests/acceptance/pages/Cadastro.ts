@@ -1,14 +1,10 @@
 import { BasePage } from 'componente-frontend-core/tests/Page';
-//import { basename } from 'path';
 
 export default class Cadastro extends BasePage {
   get url() {
     return '/users/new';
   }
 
-  /**
-   * nome
-   */
   public async Nome() {
 
     return await this.getElement('#user_name');
@@ -90,7 +86,6 @@ export default class Cadastro extends BasePage {
     const elementoCriar = await this.Criar();
     await elementoCriar.click(); 
     await this.document.waitForNavigation();
-    //testesss
   }
 
   public async RecuperarMensagemSucesso() {

@@ -12,8 +12,6 @@ export default class CheckRadio extends BasePage {
     public async ClickRadio() {
         const elemento = await this.Radio();
         await elemento.click();
-        //await this.delay(3000);
-        // await this.isChecked(radio,'#blue');
     }
     private async delay(ms: number)
     {
@@ -36,7 +34,6 @@ export default class CheckRadio extends BasePage {
     public async clickCheckPuple() {
         const CheckPuple = await this.CheckPuple();
         await CheckPuple.click();
-        // await this.delay(3000);
     }
 
     public async clickCheckWhite() {

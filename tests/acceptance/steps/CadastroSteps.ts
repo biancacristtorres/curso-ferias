@@ -18,7 +18,7 @@ export default class CadastroSteps {
   @given(/^possuo os seguintes dados$/)
   public possuoOsSeguintesDados(table: any) {
     this.dados = table.rawTable;
-    console.log({ table: table.rawTable });
+    // console.log({ table: table.rawTable });
   }
 
   @when(/^realizo o cadastro do usuario$/)
