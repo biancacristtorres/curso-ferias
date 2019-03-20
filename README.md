@@ -1,12 +1,8 @@
 # Testes de aceitação
 Os testes são executados utilizando Cucumber e Puppeteer e escritos 
-utilizando TypeScript. O foco é testar o comportamento do sistema, dessa forma,
-não fazemos nenhuma integração externa.
+utilizando TypeScript. O foco é testar o comportamento do sistema.
 
 ## Depêndencias
-As dependências são responsáveis para que os testes de aceitação rodem tanto local,
-quanto no pipeline. São softwares, bibliotecas, ferramentas ou servidores que irão
-auxiliar na orquestração dos testes e na sua execução.
 
 |  Nome  |  Link  |
 | ------ | ------ |
@@ -33,10 +29,6 @@ Responsável por ter a execução dos passos dos cenários em Gherkin. É onde p
 das features com o código que será executado por trás. Possui a execução das ações de automação 
 em alto nível.
 
-### utils
-Responsável por ter alguns elementos úteis para a execução dos testes.
-
-
 ### Local
 As configurações que são feitas para a execução dos cenários de teste começam pelo `node.d.ts`, que
 criam variáveis globais que serão utilizadas durante todo o processo. No `global.ts` é onde acontece
@@ -46,7 +38,7 @@ com seus parâmetros.
 Também na pasta raiz do projeto você encontra o `package.json`, onde é possível verificar o que cada
 script da linha de comando irá executar.
 
-É necessário executar este comando:
+**É necessário executar este comando para executar os teste:**
 
 ```sh
 $ npm run test
