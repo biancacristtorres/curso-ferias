@@ -8,10 +8,10 @@ import {
 } from 'cucumber';
 import { launch, LaunchOptions } from 'puppeteer';
 
-process.env.APP_URL = process.env.APP_URL || 'https://automacaocombatista.herokuapp.com';
+process.env.APP_URL = 'https://automacaocombatista.herokuapp.com';
 
 const launchOptions: LaunchOptions = {
-  headless: false,
+  headless: true,
   slowMo: 5,
   args: ['--no-sandbox', '--disable-setuid-sandbox'],
   ignoreHTTPSErrors: true,
